@@ -37,7 +37,7 @@ const sidebarLink = [
 		icon: <IconProfile></IconProfile>,
 	},
 	{
-		url: "/#",
+		url: "/logout",
 		title: "Logout",
 		icon: <IconLogout></IconLogout>,
 		onClick: () => {},
@@ -50,13 +50,19 @@ const sidebarLink = [
 	},
 ];
 const DashboardSidebar = () => {
+	const navLinkClass =
+		"gap-x-5 last:mt-auto last:bg-white last:shadow-sdprimary md:h-12 md:w-12 md:justify-center md:rounded-lg md:mb-8 flex items-center";
 	return (
 		<div className="flex-shrink-0 w-full md:w-[76px] flex flex-col px-[14px] rounded-3xl py-10 bg-white shadow-[10px_10px_20px_0px_rgba(218_,_213,_213,_0.15)]">
 			{sidebarLink.map((link) => (
 				<NavLink
 					key={link.title}
 					to={link.url}
-					className="gap-x-5 last:mt-auto last:bg-white last:shadow-sdprimary md:h-12 md:w-12 md:justify-center md:rounded-lg md:mb-8 text-icon-color flex items-center"
+					className={({ isActive }) =>
+						isActive
+							? `${navLinkClass} text-primary bg-primary bg-opacity-20`
+							: `${navLinkClass} text-icon-color`
+					}
 				>
 					<span className="">{link.icon}</span>
 					<span className="md:hidden">{link.title}</span>
