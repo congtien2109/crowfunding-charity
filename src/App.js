@@ -6,6 +6,9 @@ import DashboardPage from "pages/DashboardPage";
 import StartCampaignPage from "pages/StartCampaignPage";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import LayoutPayment from "layout/LayoutPayment";
+import CheckoutPage from "pages/CheckoutPage";
+import ShippingPage from "pages/ShippingPage";
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 Modal.setAppElement("#root");
@@ -28,6 +31,16 @@ function App() {
 					<Route
 						path="/campaign/:slug"
 						element={<CampaignView></CampaignView>}
+					></Route>
+				</Route>
+				<Route element={<LayoutPayment></LayoutPayment>}>
+					<Route
+						path="/checkout"
+						element={<CheckoutPage></CheckoutPage>}
+					></Route>
+					<Route
+						path="/shipping-address"
+						element={<ShippingPage></ShippingPage>}
 					></Route>
 				</Route>
 				<Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
