@@ -1,5 +1,1 @@
-{
-	"users": [],
-	"categories": [],
-	"campaigns": []
-}
+{"users":[{"id":1,"name":"vantien","password":"$2b$10$REKJxB0hfMYRTelM5TEm0OOro3SJeW9FTa6pahNOD5nIgWLFsSpcC","email":"tienblog@gmail.com","refreshToken":null}],"categories":[],"campaigns":[]}

@@ -1,8 +1,7 @@
-import useToggleValue from "hooks/UseToggleValue";
+import useToggleValue from "hooks/useToggleValue";
 import React from "react";
 import LayoutAuthentication from "layout/LayoutAuthentication";
 import FormGroup from "components/common/FormGroup";
-import ButtonGoogle from "components/button/ButtonGoogle";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -10,17 +9,16 @@ import { Link } from "react-router-dom";
 import { Label } from "components/label";
 import { Input } from "components/input";
 import { IconEyeToggle } from "components/icons";
-import { Button } from "components/button";
-const schema = yup
-	.object({
-		name: yup.string().required("This field is required"),
-		email: yup.string().email("").required("This field is required"),
-		password: yup
-			.string()
-			.required("This field is required")
-			.min(8, "Password must be 8 character"),
-	})
-	.required();
+import { Button, ButtonGoogle } from "components/button";
+import { useDispatch } from "react-redux";
+import { authLogin } from "store/auth/auth-slice";
+const schema = yup.object({
+	email: yup.string().email("").required("This field is required"),
+	password: yup
+		.string()
+		.required("This field is required")
+		.min(8, "Password must be 8 character"),
+});
 const SignInPage = () => {
 	const {
 		handleSubmit,
@@ -32,13 +30,16 @@ const SignInPage = () => {
 	});
 	const { value: showPassword, handleToggleValue: handleTogglePassword } =
 		useToggleValue();
-	const handleSignIn = (values) => {};
+	const dispatch = useDispatch();
+	const handleSignIn = (values) => {
+		dispatch(authLogin(values));
+	};
 	return (
 		<LayoutAuthentication heading="Welcome Back!">
 			<p className="lg:text-sm text-text3 lg:mb-8 mb-6 text-xs font-normal text-center">
 				Don't have an account?{" "}
-				<Link to="/sign-up" className="text-primary font-medium underline">
-					Sign up
+				<Link to="/register" className="text-primary font-medium underline">
+					Register
 				</Link>
 			</p>
 			<ButtonGoogle text="Sign in with google"></ButtonGoogle>
@@ -48,7 +49,6 @@ const SignInPage = () => {
 					<Input
 						control={control}
 						name="email"
-						type="email"
 						placeholder="example@gmail.com"
 						error={errors.email?.message}
 					></Input>

@@ -1,4 +1,4 @@
-import useOnChange from "hooks/UseOnChange";
+import useOnChange from "hooks/useOnChange";
 import ReactQuill, { Quill } from "react-quill";
 import React, { useEffect, useMemo, useState } from "react";
 import ImageUploader from "quill-image-uploader";
