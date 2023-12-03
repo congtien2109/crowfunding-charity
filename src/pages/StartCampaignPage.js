@@ -10,6 +10,7 @@ const StartCampaignPage = () => {
 		if (!user || !user.email) {
 			navigate("/login");
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 	return (
 		<Fragment>
